@@ -5,7 +5,7 @@ use axum::{
 };
 use sqlx::MySqlPool;
 use bcrypt::hash;
-use validator::{Validate, ValidationErrors};
+use validator::Validate;
 use std::collections::HashMap;
 use serde_json::{json, Value};
 

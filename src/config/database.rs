@@ -8,7 +8,7 @@ pub async fn connect() -> MySqlPool {
 
     // Coba koneksi ke database
     match MySqlPoolOptions::new()
-        .max_connections(10)
+        .max_connections(100)
         .connect(&database_url)
         .await
     {

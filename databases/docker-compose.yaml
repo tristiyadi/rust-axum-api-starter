@@ -1,0 +1,20 @@
+services:
+  mariadb:
+    image: mariadb:lts-noble
+    container_name: mariadb
+    hostname: mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: secret
+      TZ: Asia/Jakarta
+    volumes:
+      - ./conf/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./data:/var/lib/mysql
+    ports:
+      - "3386:3306"
+    restart: unless-stopped
+    networks:
+      - rust-backend-api-network
+networks:
+  rust-backend-api-network:
+    name: rust-backend-api-network
+    driver: bridge

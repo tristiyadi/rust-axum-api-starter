@@ -31,6 +31,8 @@ cargo add tower-http@0.6.8 --features cors
 cargo add validator@0.20.0 --features derive
 cargo install sqlx-cli
 
+cargo check
+
 # Migrasi DB
 sqlx migrate add create_users_table
 sqlx migrate run

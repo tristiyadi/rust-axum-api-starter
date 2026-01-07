@@ -1,0 +1,14 @@
+.env
+*.log
+.DS_Store
+.env.backup
+.env.production
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+/auth.json
+/vendor
+Thumbs.db
+data/*

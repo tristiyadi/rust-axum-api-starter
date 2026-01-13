@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Eko\",\r\n    \"email\": \"eko@trimogo.com\",\r\n    \"password\": \"secret\"\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"Eko\",\r\n    \"email\": \"ff@trimogo.com\",\r\n    \"password\": \"ff@trimogo.com\",\r\n    \"role_id\": 2,\r\n    \"password_confirmation\": \"ff@trimogo.com\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -25,12 +25,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/register",
-							"protocol": "http",
+							"raw": "{{baseURL}}/api/register",
 							"host": [
-								"localhost"
+								"{{baseURL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"register"
@@ -46,7 +44,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"eko@trimogo.com\",\r\n    \"password\": \"secret\"\r\n}\r\n",
+							"raw": "{\r\n    \"email\": \"ff@trimogo.com\",\r\n    \"password\": \"ff@trimogo.com\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -54,12 +52,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/login",
-							"protocol": "http",
+							"raw": "{{baseURL}}/api/login",
 							"host": [
-								"localhost"
+								"{{baseURL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"login"
@@ -80,13 +76,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTc2Nzg1NDQ4Mn0.pNcDigYTziYRyi_iA2DOQZjtJRGdcxfl2HGXfDGhS28",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsInJvbGVfaWQiOjIsImV4cCI6MTc2ODM1OTEwMn0.OukMuaYa2IhpuY4GSlrd49i2WUH-mTfw8UdubtWpXXQ",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Eko2\",\r\n    \"email\": \"eko2@trimogo.com\",\r\n    \"password\": \"secret\"\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"Eko\",\r\n    \"email\": \"asd@trimogo.com\",\r\n    \"password\": \"asd@trimogo.com\",\r\n    \"role_id\": 2,\r\n    \"password_confirmation\": \"asd@trimogo.com\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -94,12 +90,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users",
-							"protocol": "http",
+							"raw": "{{baseURL}}/api/users",
 							"host": [
-								"localhost"
+								"{{baseURL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users"
@@ -109,7 +103,7 @@
 					"response": []
 				},
 				{
-					"name": "users",
+					"name": "list",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -118,7 +112,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTc2Nzg1NDQ4Mn0.pNcDigYTziYRyi_iA2DOQZjtJRGdcxfl2HGXfDGhS28",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsInJvbGVfaWQiOjIsImV4cCI6MTc2ODM1OTEwMn0.OukMuaYa2IhpuY4GSlrd49i2WUH-mTfw8UdubtWpXXQ",
 								"type": "text"
 							}
 						],
@@ -132,12 +126,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users",
-							"protocol": "http",
+							"raw": "{{baseURL}}/api/users",
 							"host": [
-								"localhost"
+								"{{baseURL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users"
@@ -156,7 +148,150 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTc2Nzg1NDQ4Mn0.pNcDigYTziYRyi_iA2DOQZjtJRGdcxfl2HGXfDGhS28",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsInJvbGVfaWQiOjIsImV4cCI6MTc2ODM1OTEwMn0.OukMuaYa2IhpuY4GSlrd49i2WUH-mTfw8UdubtWpXXQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users/cee51438-a11e-4b55-a1fe-d1b46382d76d",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"cee51438-a11e-4b55-a1fe-d1b46382d76d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsInJvbGVfaWQiOjIsImV4cCI6MTc2ODM1OTEwMn0.OukMuaYa2IhpuY4GSlrd49i2WUH-mTfw8UdubtWpXXQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Eko\",\r\n    \"email\": \"asd@trimogo.com\",\r\n    \"password\": \"asd@trimogo.com\",\r\n    \"role_id\": 2,\r\n    \"password_confirmation\": \"asd@trimogo.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users/cee51438-a11e-4b55-a1fe-d1b46382d76d",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"cee51438-a11e-4b55-a1fe-d1b46382d76d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsInJvbGVfaWQiOjIsImV4cCI6MTc2ODM1OTEwMn0.OukMuaYa2IhpuY4GSlrd49i2WUH-mTfw8UdubtWpXXQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Eko 3\",\r\n    \"email\": \"eko3@trimogo.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users/dd98acfc-947f-49a6-8b6d-b634aa8e358f",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"dd98acfc-947f-49a6-8b6d-b634aa8e358f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsInJvbGVfaWQiOjIsImV4cCI6MTc2ODM1OTEwMn0.OukMuaYa2IhpuY4GSlrd49i2WUH-mTfw8UdubtWpXXQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Half akses user\",\r\n    \"display_name\": \"half_user\",\r\n    \"name\": \"half_user\",\r\n    \"roles_id\": 3,\r\n    \"status\": true,\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/roles",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsInJvbGVfaWQiOjIsImV4cCI6MTc2ODM1OTEwMn0.OukMuaYa2IhpuY4GSlrd49i2WUH-mTfw8UdubtWpXXQ",
 								"type": "text"
 							}
 						],
@@ -170,16 +305,50 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/1",
-							"protocol": "http",
+							"raw": "{{baseURL}}/api/roles",
 							"host": [
-								"localhost"
+								"{{baseURL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
-								"users",
-								"1"
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsInJvbGVfaWQiOjIsImV4cCI6MTc2ODM1OTEwMn0.OukMuaYa2IhpuY4GSlrd49i2WUH-mTfw8UdubtWpXXQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/roles/cee51438-a11e-4b55-a1fe-d1b46382d76d",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"roles",
+								"cee51438-a11e-4b55-a1fe-d1b46382d76d"
 							]
 						}
 					},
@@ -192,13 +361,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTc2Nzg1NDQ4Mn0.pNcDigYTziYRyi_iA2DOQZjtJRGdcxfl2HGXfDGhS28",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsInJvbGVfaWQiOjIsImV4cCI6MTc2ODM1OTEwMn0.OukMuaYa2IhpuY4GSlrd49i2WUH-mTfw8UdubtWpXXQ",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Eko 3\",\r\n    \"email\": \"eko3@trimogo.com\"\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"Eko\",\r\n    \"email\": \"asd@trimogo.com\",\r\n    \"password\": \"asd@trimogo.com\",\r\n    \"role_id\": 2,\r\n    \"password_confirmation\": \"asd@trimogo.com\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -206,16 +375,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/3",
-							"protocol": "http",
+							"raw": "{{baseURL}}/api/roles/cee51438-a11e-4b55-a1fe-d1b46382d76d",
 							"host": [
-								"localhost"
+								"{{baseURL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
-								"users",
-								"3"
+								"roles",
+								"cee51438-a11e-4b55-a1fe-d1b46382d76d"
 							]
 						}
 					},
@@ -228,7 +395,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTc2Nzg1NDQ4Mn0.pNcDigYTziYRyi_iA2DOQZjtJRGdcxfl2HGXfDGhS28",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsInJvbGVfaWQiOjIsImV4cCI6MTc2ODM1OTEwMn0.OukMuaYa2IhpuY4GSlrd49i2WUH-mTfw8UdubtWpXXQ",
 								"type": "text"
 							}
 						],
@@ -242,22 +409,27 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/3",
-							"protocol": "http",
+							"raw": "{{baseURL}}/api/roles/dd98acfc-947f-49a6-8b6d-b634aa8e358f",
 							"host": [
-								"localhost"
+								"{{baseURL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
-								"users",
-								"3"
+								"roles",
+								"dd98acfc-947f-49a6-8b6d-b634aa8e358f"
 							]
 						}
 					},
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
 		}
 	]
 }

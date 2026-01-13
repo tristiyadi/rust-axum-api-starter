@@ -1,17 +1,32 @@
 services:
-  mariadb:
+  mariadblts:
     image: mariadb:lts-noble
-    container_name: mariadb
-    hostname: mariadb
+    container_name: mariadblts
+    hostname: mariadblts
     environment:
-      MARIADB_ROOT_PASSWORD: secret
-      TZ: Asia/Jakarta
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      TZ: ${TZ}
     volumes:
       - ./conf/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./data:/var/lib/mysql
     ports:
-      - "3386:3306"
+      - "${DB_EXTERNAL_PORT}:${DB_PORT}"
     restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mariadb-check",
+          "--all-databases",
+          "-u",
+          "root",
+          "-p${MARIADB_ROOT_PASSWORD}",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     networks:
       - rust-backend-api-network
 networks:

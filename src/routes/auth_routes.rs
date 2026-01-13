@@ -1,9 +1,8 @@
 use axum::{Router, routing::post};
 
-// import handler register
-use crate::handlers::register_handler::register;
-// import handler login
-use crate::handlers::login_handler::login;
+// import handler register dan login dari module auth
+use crate::handlers::auth::login_handler::login;
+use crate::handlers::auth::register_handler::register;
 
 // fungsi untuk mengatur route autentikasi
 pub fn auth_routes() -> Router {

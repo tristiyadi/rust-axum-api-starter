@@ -1,32 +1,23 @@
-use axum::{
-    Extension,
-    Json,
-    http::StatusCode,
-};
-use sqlx::MySqlPool;
+use axum::{Extension, Json, http::StatusCode};
 use bcrypt::verify;
-use validator::Validate;
+use serde_json::{Value, json};
+use sqlx::MySqlPool;
 use std::collections::HashMap;
-use serde_json::{json, Value};
+use validator::Validate;
+
+// import model user
+use crate::models::user::User;
 
 // import schema request dan response login
-use crate::schemas::login_schema::{
-    LoginRequest,
-    LoginResponse,
-    UserResponse,
-};
+use crate::schemas::login_schema::{LoginRequest, LoginResponse, UserResponse};
 
 // import util jwt generate token dan response API
-use crate::utils::{
-    jwt::generate_token,
-    response::ApiResponse,
-};
+use crate::utils::{jwt::generate_token, response::ApiResponse};
 
 pub async fn login(
     Extension(db): Extension<MySqlPool>,
     Json(payload): Json<LoginRequest>,
 ) -> (StatusCode, Json<ApiResponse<Value>>) {
-
     // Validasi Request
     if let Err(errors) = payload.validate() {
         let mut field_errors: HashMap<String, Vec<String>> = HashMap::new();
@@ -43,7 +34,6 @@ pub async fn login(
         }
 
         return (
-
             // kirim response 422 Unprocessable Entity
             StatusCode::UNPROCESSABLE_ENTITY,
             Json(ApiResponse {
@@ -55,49 +45,61 @@ pub async fn login(
     }
 
     // get user berdasarkan email
-    let user = match sqlx::query!(
-        "SELECT id, name, email, password FROM users WHERE email = ?",
-        payload.email
+    let user = match sqlx::query_as::<_, User>(
+        r#"
+        SELECT * 
+        FROM users 
+        WHERE email = ?
+        "#,
     )
+    .bind(&payload.email)
     .fetch_one(&db)
     .await
     {
         Ok(user) => user,
         Err(sqlx::Error::RowNotFound) => {
             return (
-
                 // kirim response 401 Unauthorized
                 StatusCode::UNAUTHORIZED,
-                Json(ApiResponse::error(
-                    "Email atau Password Anda Salah",
-                )),
+                Json(ApiResponse::error("Email atau Password Anda Salah")),
             );
         }
         Err(e) => {
             eprintln!("Database error: {}", e);
             return (
-
                 // kirim response 500 Internal Server Error
                 StatusCode::INTERNAL_SERVER_ERROR,
-                Json(ApiResponse::error(
-                    "Terjadi kesalahan sistem",
-                )),
+                Json(ApiResponse::error("Terjadi kesalahan sistem")),
             );
         }
     };
 
+    // Check if user status is active
+    if let Some(ref status) = user.status {
+        if status != "active" {
+            return (
+                StatusCode::UNAUTHORIZED,
+                Json(ApiResponse::error("Akun Anda tidak aktif")),
+            );
+        }
+    }
+
     // Verifikasi Password Dengan Bcrypt
-    match verify(payload.password, &user.password) {
+    let password_hash = user.password.unwrap_or_default();
+    match verify(payload.password, &password_hash) {
         Ok(true) => {
-            
-            // generate token JWT
-            match generate_token(user.id) {
+            // generate token JWT dengan role_id
+            match generate_token(user.id, user.role_id) {
                 Ok(token) => {
                     let response = LoginResponse {
                         user: UserResponse {
                             id: user.id,
                             name: user.name,
                             email: user.email,
+                            uid: user.uid,
+                            role_id: user.role_id,
+                            username: user.username,
+                            status: user.status,
                         },
                         token,
                     };
@@ -105,10 +107,7 @@ pub async fn login(
                     (
                         // kirim response 200 OK
                         StatusCode::OK,
-                        Json(ApiResponse::success(
-                            "Login Berhasil",
-                            json!(response),
-                        )),
+                        Json(ApiResponse::success("Login Berhasil", json!(response))),
                     )
                 }
                 Err(e) => {
@@ -116,28 +115,20 @@ pub async fn login(
                     (
                         // kirim response 500 Internal Server Error
                         StatusCode::INTERNAL_SERVER_ERROR,
-                        Json(ApiResponse::error(
-                            "Gagal membuat token",
-                        )),
+                        Json(ApiResponse::error("Gagal membuat token")),
                     )
                 }
             }
         }
         Ok(false) => (
-
             // kirim response 401 Unauthorized
             StatusCode::UNAUTHORIZED,
-            Json(ApiResponse::error(
-                "Email atau Password Anda Salah",
-            )),
+            Json(ApiResponse::error("Email atau Password Anda Salah")),
         ),
         Err(_) => (
-
             // kirim response 500 Internal Server Error
             StatusCode::INTERNAL_SERVER_ERROR,
-            Json(ApiResponse::error(
-                "Gagal memverifikasi password",
-            )),
+            Json(ApiResponse::error("Gagal memverifikasi password")),
         ),
     }
 }

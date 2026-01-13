@@ -1,3 +1,2 @@
-pub mod register_handler;
-pub mod login_handler;
-pub mod user_handler;
+pub mod auth;
+pub mod user_management;

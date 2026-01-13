@@ -1,0 +1,24 @@
+version: "3.8"
+
+include:
+  - path: databases/docker-compose.yaml
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend_api_jwt_app
+    restart: unless-stopped
+    environment:
+      APP_HOST: ${APP_HOST}
+      APP_PORT: ${APP_PORT}
+      DATABASE_URL: mysql://root:${MARIADB_ROOT_PASSWORD}@mariadblts:${DB_PORT}/${MARIADB_DATABASE}
+      JWT_SECRET: ${JWT_SECRET}
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    depends_on:
+      mariadblts:
+        condition: service_healthy
+    networks:
+      - rust-backend-api-network

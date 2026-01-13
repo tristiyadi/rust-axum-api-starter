@@ -1,0 +1,39 @@
+# Rust build artifacts
+target/
+**/*.rs.bk
+*.pdb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Git
+.git/
+.gitignore
+
+# Databases
+databases/
+*.db
+*.sqlite
+
+# Logs
+*.log
+
+# Documentation
+README.md
+*.md
+
+# Postman
+*.postman_collection.json

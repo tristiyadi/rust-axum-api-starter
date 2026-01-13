@@ -1,19 +1,17 @@
-use axum::{Router, Extension};
+use axum::{Extension, Router};
 use dotenvy::dotenv;
-use tower_http::cors::{CorsLayer, Any};
+use tower_http::cors::{Any, CorsLayer};
 
 mod config;
-mod models;
 mod handlers;
+mod middlewares;
+mod models;
 mod routes;
 mod schemas;
 mod utils;
-mod middlewares;
-
 
 #[tokio::main]
 async fn main() {
-    
     // Load environment variables from .env file
     dotenv().ok();
 
@@ -30,6 +28,7 @@ async fn main() {
     let app = Router::new()
         .merge(routes::auth_routes::auth_routes())
         .merge(routes::user_routes::user_routes())
+        .merge(routes::role_routes::role_routes())
         .layer(Extension(db))
         .layer(cors);
 
@@ -44,13 +43,12 @@ async fn main() {
 
     // Alamat server
     let addr = format!("{}:{}", host, port);
-    
+
     // Tampilkan alamat server di console
     println!("Server running on http://{}", addr);
-    
+
     // Jalankan server
-    axum::serve(
-        tokio::net::TcpListener::bind(&addr).await.unwrap(),
-        app
-    ).await.unwrap();
+    axum::serve(tokio::net::TcpListener::bind(&addr).await.unwrap(), app)
+        .await
+        .unwrap();
 }

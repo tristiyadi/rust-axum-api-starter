@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 use validator::Validate;
 
 #[derive(Deserialize, Validate)]
@@ -10,11 +10,15 @@ pub struct LoginRequest {
     pub password: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, sqlx::FromRow)]
 pub struct UserResponse {
-    pub id: i64,
+    pub id: u32,
     pub name: String,
     pub email: String,
+    pub uid: Option<String>,
+    pub role_id: u32,
+    pub username: Option<String>,
+    pub status: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
